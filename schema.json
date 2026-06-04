@@ -1,0 +1,33 @@
+{
+  "header/arturo": {
+    "name": "Arturo Carrera Huerta",
+    "email": "arturocarrerahuerta@gmail.com",
+    "phone": "271 313 1065",
+    "city": "Córdoba, Veracruz, México",
+    "profile": "Estudiante de desarrollo de software...",
+    "image": "Cloudinary URL"
+  },
+  "education/{id}": {
+    "university": "Universidad Veracruzana",
+    "career": "Ingeniería en Software",
+    "description": "Formación en desarrollo de software..."
+  },
+  "work_experience/{id}": {
+    "title": "Proyecto Clima API con JavaFX",
+    "items": ["Desarrollo de aplicación...", "Consumo de servicios..."]
+  },
+  "skills/{id}": {
+    "name": "Java",
+    "level": 95
+  },
+  "certificates/{id}": {
+    "name": "Formación académica en Ingeniería en Software"
+  },
+  "languages/{id}": {
+    "name": "Español",
+    "level": "Nativo"
+  },
+  "interests/{id}": {
+    "name": "Desarrollo de Software"
+  }
+}
