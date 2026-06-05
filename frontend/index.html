@@ -8,13 +8,14 @@
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #f4f6fb;
+    --bg: #f4f6f9;
     --surface: #ffffff;
     --surface2: #f0f3f8;
     --border: #d9dee8;
     --border2: #c5ccd8;
-    --accent: #e74c3c;
+    --accent: #d94b3d;
     --accent2: #26354a;
+    --topbar: #111111;
     --danger: #b91c1c;
     --warn: #ffa94d;
     --text: #222831;
@@ -35,75 +36,70 @@
     font-size: 13px;
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
     overflow-x: hidden;
   }
 
-  /* ── SIDEBAR ── */
+  /* ── TOP HEADER ── */
   #sidebar {
-    width: 220px;
-    min-height: 100vh;
-    background: #26354a;
-    border-right: 1px solid var(--border);
+    width: 100%;
+    background: var(--topbar);
     display: flex;
     flex-direction: column;
-    position: fixed;
-    top: 0; left: 0; bottom: 0;
+    position: sticky;
+    top: 0;
     z-index: 100;
+    box-shadow: 0 2px 12px rgba(17, 17, 17, 0.12);
   }
 
   .logo {
-    padding: 24px 20px 20px;
-    border-bottom: 1px solid var(--border);
+    padding: 18px 28px;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
   }
   .logo-title {
     font-family: var(--sans);
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 800;
     color: #fff;
     letter-spacing: -0.5px;
   }
-  .logo-sub {
-    font-size: 10px;
-    color: var(--text2);
-    margin-top: 2px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
+  .logo-sub { display: none; }
+
+  nav {
+    padding: 0 28px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    overflow-x: auto;
+    background: #fff;
+    border-bottom: 1px solid var(--border);
   }
 
-  nav { padding: 12px 0; flex: 1; overflow-y: auto; }
-
-  .nav-section {
-    padding: 8px 16px 4px;
-    font-size: 9px;
-    letter-spacing: 2px;
-    color: var(--text3);
-    text-transform: uppercase;
-  }
+  .nav-section { display: none; }
 
   .nav-item {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 9px 20px;
+    justify-content: center;
+    padding: 14px 12px 12px;
     cursor: pointer;
-    color: #dce3ef;
+    color: var(--text2);
     transition: color var(--transition), background var(--transition);
-    border-left: 2px solid transparent;
+    border-left: none;
+    border-bottom: 3px solid transparent;
     font-size: 12px;
+    white-space: nowrap;
   }
-  .nav-item:hover { color: #fff; background: rgba(255,255,255,0.08); }
+  .nav-item:hover { color: var(--text); background: var(--surface2); }
   .nav-item.active {
     color: var(--accent);
-    border-left-color: var(--accent);
-    background: rgba(91,140,255,0.06);
+    border-bottom-color: var(--accent);
+    background: rgba(217,75,61,0.08);
   }
-  .nav-item .icon { font-size: 14px; width: 18px; text-align: center; }
+  .nav-item .icon { display: none; }
 
-  /* API Config at bottom */
   .api-config {
-    padding: 16px;
-    border-top: 1px solid var(--border);
-    background: #26354a;
+    display: none;
   }
   .api-config label { font-size: 10px; color: var(--text2); letter-spacing: 1px; text-transform: uppercase; display: block; margin-bottom: 6px; }
   .api-config input {
@@ -121,7 +117,8 @@
 
   /* ── MAIN ── */
   #main {
-    margin-left: 220px;
+    margin-left: 0;
+    width: 100%;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -135,15 +132,15 @@
     align-items: center;
     justify-content: space-between;
     background: var(--surface);
-    position: sticky; top: 0; z-index: 50;
+    position: static;
   }
-  .page-title { font-family: var(--sans); font-size: 20px; font-weight: 800; color: #fff; }
+  .page-title { font-family: var(--sans); font-size: 20px; font-weight: 800; color: var(--text); }
   .page-path { font-size: 11px; color: var(--text2); margin-top: 2px; }
 
   .topbar-actions { display: flex; gap: 10px; align-items: center; }
 
   /* ── SECTIONS ── */
-  .section { display: none; padding: 28px; }
+  .section { display: none; padding: 28px; width: 100%; }
   .section.active { display: block; }
 
   /* ── CARDS ── */
@@ -162,7 +159,7 @@
     justify-content: space-between;
     background: var(--surface2);
   }
-  .card-title { font-family: var(--sans); font-size: 13px; font-weight: 600; color: #fff; }
+  .card-title { font-family: var(--sans); font-size: 13px; font-weight: 600; color: var(--text); }
   .card-body { padding: 18px; }
 
   /* ── GRID ── */
@@ -212,7 +209,7 @@
     white-space: nowrap;
   }
   .btn-primary { background: var(--accent); color: #fff; }
-  .btn-primary:hover { background: #4a78f0; }
+  .btn-primary:hover { background: #b83d31; }
   .btn-ghost { background: transparent; color: var(--text2); border: 1px solid var(--border2); }
   .btn-ghost:hover { color: var(--text); border-color: var(--border2); background: var(--surface2); }
   .btn-danger { background: transparent; color: var(--danger); border: 1px solid transparent; padding: 6px 8px; }
@@ -286,7 +283,7 @@
     align-items: center;
     justify-content: space-between;
   }
-  .modal-title { font-family: var(--sans); font-size: 15px; font-weight: 700; color: #fff; }
+  .modal-title { font-family: var(--sans); font-size: 15px; font-weight: 700; color: var(--text); }
   .modal-close { background: none; border: none; color: var(--text2); cursor: pointer; font-size: 18px; line-height: 1; padding: 2px; }
   .modal-close:hover { color: var(--danger); }
   .modal-body { padding: 20px; }
@@ -359,8 +356,10 @@
   ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
 
   @media (max-width: 768px) {
-    #sidebar { width: 100%; min-height: auto; position: relative; flex-direction: row; flex-wrap: wrap; }
-    #main { margin-left: 0; }
+    .logo { padding: 16px 18px; }
+    nav { padding: 0 14px; }
+    header.topbar { padding: 16px 18px; align-items: flex-start; gap: 12px; }
+    .section { padding: 18px; }
     .form-grid { grid-template-columns: 1fr; }
   }
   #section-header .card:nth-of-type(2){display:none;}
@@ -368,28 +367,26 @@
 </head>
 <body>
 
-<!-- ── SIDEBAR ── -->
-<aside id="sidebar">
+<!-- ── TOP HEADER ── -->
+<header id="sidebar">
   <div class="logo">
-    <div class="logo-title">Arturo<span style="color:var(--accent)">.</span>Admin</div>
+    <div class="logo-title">Arturo CV Manager</div>
     <div class="logo-sub">Editor CV</div>
   </div>
   <nav>
-    <div class="nav-section">Perfil</div>
-    <div class="nav-item active" data-section="header"><span class="icon">👤</span> Header</div>
-    <div class="nav-section">Contenido</div>
-    <div class="nav-item" data-section="education"><span class="icon">🎓</span> Educación</div>
-    <div class="nav-item" data-section="work-experience"><span class="icon">💼</span> Experiencia</div>
-    <div class="nav-item" data-section="skills"><span class="icon">⚡</span> Habilidades</div>
-    <div class="nav-item" data-section="certificates"><span class="icon">📜</span> Certificados</div>
-    <div class="nav-item" data-section="languages"><span class="icon">🌐</span> Idiomas</div>
-    <div class="nav-item" data-section="interests"><span class="icon">✦</span> Intereses</div>
+    <div class="nav-item active" data-section="header">Header</div>
+    <div class="nav-item" data-section="education">Educación</div>
+    <div class="nav-item" data-section="work-experience">Experiencia</div>
+    <div class="nav-item" data-section="skills">Habilidades</div>
+    <div class="nav-item" data-section="certificates">Certificados</div>
+    <div class="nav-item" data-section="languages">Idiomas</div>
+    <div class="nav-item" data-section="interests">Intereses</div>
   </nav>
   <div class="api-config">
     <label>API Base URL</label>
     <input type="text" id="apiBase" value="https://zizou686-admin-cv.onrender.com/api" placeholder="https://tu-backend-render.onrender.com/api">
   </div>
-</aside>
+</header>
 
 <!-- ── MAIN ── -->
 <main id="main">
